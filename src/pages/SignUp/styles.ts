@@ -8,15 +8,18 @@ export const Container = styled.div`
   align-items: stretch;
 `;
 
-export const Form = styled.div`
+export const Content = styled.div`
   margin: auto;
   width: 100%;
   max-width: 500px;
-  padding: 16px;
+  height: 100%;
+  max-height: 450px;
+  padding: 32px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   background-color: #b8b8ff;
   border-radius: 8px;
@@ -24,6 +27,11 @@ export const Form = styled.div`
   h1 {
     color: #fff;
     margin-bottom: 24px;
+  }
+
+  form {
+    width: 100%;
+    text-align: center;
   }
 
   > a {
