@@ -5,6 +5,7 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
+import api from '../../services/api';
 
 import { Container, Content } from './styles';
 
@@ -43,6 +44,8 @@ const SignUp: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
+
+        await api.post('users', data);
 
         addToast({
           type: 'success',
