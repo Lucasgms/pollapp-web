@@ -24,12 +24,6 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
-      addToast({
-        type: 'error',
-        title: 'Register error',
-        description:
-          'An error occurred while trying to register, please try again',
-      });
       try {
         formRef.current?.setErrors({});
 
