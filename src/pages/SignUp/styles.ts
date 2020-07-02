@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - 80px);
 
   display: flex;
   align-items: stretch;
@@ -13,7 +13,7 @@ export const Content = styled.div`
   width: 100%;
   max-width: 500px;
   height: 100%;
-  max-height: 450px;
+  max-height: 400px;
   padding: 32px;
 
   display: flex;
