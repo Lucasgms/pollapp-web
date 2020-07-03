@@ -3,7 +3,7 @@ import { shade } from 'polished';
 
 export const Container = styled.div`
   height: calc(100vh - 80px);
-
+  padding-top: 24px;
   display: flex;
   align-items: stretch;
 `;
@@ -12,8 +12,6 @@ export const Content = styled.div`
   margin: auto;
   width: 100%;
   max-width: 500px;
-  height: 100%;
-  max-height: 400px;
   padding: 32px;
 
   display: flex;
@@ -24,7 +22,7 @@ export const Content = styled.div`
   background-color: #b8b8ff;
   border-radius: 8px;
 
-  h1 {
+  h2 {
     color: #fff;
     margin-bottom: 24px;
   }
@@ -47,4 +45,23 @@ export const Content = styled.div`
   }
 `;
 
-export const Title = styled.h1``;
+export const OptionsContainer = styled.div`
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 8px 0;
+    color: #fff;
+    text-align: left;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #9381ff;
+    background-color: transparent;
+    color: #9381ff;
+  }
+`;
