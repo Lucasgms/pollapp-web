@@ -15,14 +15,19 @@ const Toggle: React.FC<ToggleProps> = ({ children, name, ...rest }) => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value',
+      path: 'checked',
     });
   }, [fieldName, registerField]);
 
   return (
     <Container>
       <ToggleContent>
-        <input ref={inputRef} type="checkbox" {...rest} />
+        <input
+          ref={inputRef}
+          type="checkbox"
+          {...rest}
+          defaultValue={defaultValue}
+        />
         <span className="slider" />
       </ToggleContent>
       <label htmlFor={fieldName}>{children}</label>
