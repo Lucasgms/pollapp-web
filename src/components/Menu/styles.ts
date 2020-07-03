@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.header`
-  width: 100vw;
+  width: 100%;
   height: 80px;
   padding: 12px;
   background-color: #9381ff;

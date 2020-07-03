@@ -1,5 +1,5 @@
 import React, {
-  InputHTMLAttributes,
+  TextareaHTMLAttributes,
   useState,
   useRef,
   useCallback,
@@ -11,13 +11,13 @@ import { useField } from '@unform/core';
 
 import { Container, Error } from './styles';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
   icon: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+const Textarea: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const { fieldName, error, defaultValue, registerField } = useField(name);
@@ -42,7 +42,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   return (
     <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
       {Icon && <Icon size={20} />}
-      <input
+      <textarea
         ref={inputRef}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
@@ -59,4 +59,4 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   );
 };
 
-export default Input;
+export default Textarea;
