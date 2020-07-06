@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useRef, useEffect } from 'react';
+import React, { InputHTMLAttributes, useRef, useEffect, useState } from 'react';
 import { useField } from '@unform/core';
 
 import { Container, ToggleContent } from './styles';
@@ -14,7 +14,8 @@ const Toggle: React.FC<ToggleProps> = ({
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, error, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue, registerField } = useField(name);
+  const [isDisabled, setIsDisabled] = useState(!!disabled);
 
   useEffect(() => {
     registerField({
@@ -22,17 +23,19 @@ const Toggle: React.FC<ToggleProps> = ({
       ref: inputRef.current,
       path: 'checked',
     });
-  }, [fieldName, registerField]);
+
+    setIsDisabled(!!disabled);
+  }, [fieldName, registerField, disabled]);
 
   return (
     <Container>
-      <ToggleContent isDisabled={!!disabled}>
+      <ToggleContent isDisabled={!!isDisabled}>
         <input
           ref={inputRef}
           type="checkbox"
           {...rest}
           defaultValue={defaultValue}
-          disabled
+          disabled={!!isDisabled}
         />
         <span className="slider" />
       </ToggleContent>
