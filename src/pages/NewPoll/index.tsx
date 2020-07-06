@@ -104,7 +104,7 @@ const NewPoll: React.FC = () => {
         });
       }
     },
-    [addToast],
+    [addToast, history, user],
   );
 
   return (
