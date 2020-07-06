@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { lighten } from 'polished';
 
 import Tooltip from '../Tooltip';
 
@@ -6,6 +7,7 @@ interface ContainerProps {
   isErrored: boolean;
   isFocused: boolean;
   isFilled: boolean;
+  isDisabled: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -40,6 +42,12 @@ export const Container = styled.div<ContainerProps>`
     props.isFilled &&
     css`
       color: #9381ff;
+    `}
+
+  ${props =>
+    props.isDisabled &&
+    css`
+      background: ${lighten(0.08, '#b8b8ff')};
     `}
 
   input {

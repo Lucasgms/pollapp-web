@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
 import NewPoll from '../pages/NewPoll';
+import PollDetails from '../pages/PollDetails';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -14,6 +15,7 @@ const Routes: React.FC = () => (
     <Route path="/signup" exact component={SignUp} />
     <Route path="/signin" exact component={SignIn} />
     <Route path="/new-poll" exact component={NewPoll} isPrivate />
+    <Route path="/polls/:id" exact component={PollDetails} isPrivate />
   </Switch>
 );
 

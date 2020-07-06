@@ -16,10 +16,16 @@ interface InputProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   icon: React.ComponentType<IconBaseProps>;
 }
 
-const Textarea: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+const Textarea: React.FC<InputProps> = ({
+  name,
+  icon: Icon,
+  disabled,
+  ...rest
+}) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(!!disabled);
   const { fieldName, error, defaultValue, registerField } = useField(name);
 
   const handleInputFocus = useCallback(() => {
@@ -37,16 +43,24 @@ const Textarea: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
       ref: inputRef.current,
       path: 'value',
     });
-  }, [fieldName, registerField]);
+
+    setIsDisabled(!!disabled);
+  }, [fieldName, registerField, disabled]);
 
   return (
-    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+    <Container
+      isErrored={!!error}
+      isFilled={isFilled}
+      isFocused={isFocused}
+      isDisabled={!!isDisabled}
+    >
       {Icon && <Icon size={20} />}
       <textarea
         ref={inputRef}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
+        disabled={!!isDisabled}
         {...rest}
       />
 

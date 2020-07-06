@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useRef, useEffect } from 'react';
+import React, { InputHTMLAttributes, useRef, useEffect, useState } from 'react';
 import { useField } from '@unform/core';
 
 import { Container, ToggleContent } from './styles';
@@ -7,9 +7,15 @@ interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
-const Toggle: React.FC<ToggleProps> = ({ children, name, ...rest }) => {
+const Toggle: React.FC<ToggleProps> = ({
+  children,
+  name,
+  disabled,
+  ...rest
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, error, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue, registerField } = useField(name);
+  const [isDisabled, setIsDisabled] = useState(!!disabled);
 
   useEffect(() => {
     registerField({
@@ -17,16 +23,19 @@ const Toggle: React.FC<ToggleProps> = ({ children, name, ...rest }) => {
       ref: inputRef.current,
       path: 'checked',
     });
-  }, [fieldName, registerField]);
+
+    setIsDisabled(!!disabled);
+  }, [fieldName, registerField, disabled]);
 
   return (
     <Container>
-      <ToggleContent>
+      <ToggleContent isDisabled={!!isDisabled}>
         <input
           ref={inputRef}
           type="checkbox"
           {...rest}
           defaultValue={defaultValue}
+          disabled={!!isDisabled}
         />
         <span className="slider" />
       </ToggleContent>
