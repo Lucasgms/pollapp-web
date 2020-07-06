@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { darken } from 'polished';
+
+interface ContainerProps {
+  isDisabled: boolean;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -10,7 +15,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ToggleContent = styled.label`
+export const ToggleContent = styled.label<ContainerProps>`
   position: relative;
   margin-right: 12px;
   width: 60px;
@@ -23,6 +28,12 @@ export const ToggleContent = styled.label`
 
     &:checked + .slider {
       background-color: #9381ff;
+
+      ${props =>
+        props.isDisabled &&
+        css`
+          background-color: ${darken(0.05, '#b8b8ff')};
+        `}
 
       &:before {
         transform: translateX(26px);
@@ -56,6 +67,12 @@ export const ToggleContent = styled.label`
       background-color: #9381ff;
       transition: 0.4s;
       border-radius: 50%;
+
+      ${props =>
+        props.isDisabled &&
+        css`
+          background-color: ${darken(0.08, '#f8f7ff')};
+        `}
     }
   }
 `;

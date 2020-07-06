@@ -7,7 +7,12 @@ interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
-const Toggle: React.FC<ToggleProps> = ({ children, name, ...rest }) => {
+const Toggle: React.FC<ToggleProps> = ({
+  children,
+  name,
+  disabled,
+  ...rest
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, error, defaultValue, registerField } = useField(name);
 
@@ -21,12 +26,13 @@ const Toggle: React.FC<ToggleProps> = ({ children, name, ...rest }) => {
 
   return (
     <Container>
-      <ToggleContent>
+      <ToggleContent isDisabled={!!disabled}>
         <input
           ref={inputRef}
           type="checkbox"
           {...rest}
           defaultValue={defaultValue}
+          disabled
         />
         <span className="slider" />
       </ToggleContent>
