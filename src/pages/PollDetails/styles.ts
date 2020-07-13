@@ -49,6 +49,13 @@ export const Content = styled.div`
     display: flex;
     justify-content: center;
 
+    + div {
+      opacity: 0;
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
+
     svg {
       margin-left: 8px;
     }

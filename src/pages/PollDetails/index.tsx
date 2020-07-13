@@ -56,6 +56,8 @@ const PollDetails: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [poll, setPoll] = useState<PollData>({} as PollData);
+  const [pollLink, setPollLink] = useState('');
+
   const { addToast } = useToast();
   const history = useHistory();
 
@@ -65,8 +67,10 @@ const PollDetails: React.FC = () => {
       setPoll(pollData);
     }
 
+    setPollLink(`http://localhost:3000/polls/${poll.hash}`);
+
     getPollData();
-  }, [id]);
+  }, [id, poll]);
 
   const addNewOption = useCallback(() => {
     const newOptions = Object.assign(poll.options);
@@ -135,10 +139,15 @@ const PollDetails: React.FC = () => {
   );
 
   const sharePoll = useCallback(() => {
-    /*
-      TODO: share method.
-    */
-  }, []);
+    formRef.current?.getFieldRef('pollLink').select();
+
+    document.execCommand('copy');
+
+    addToast({
+      type: 'success',
+      title: 'Link copied to clipboard',
+    });
+  }, [addToast]);
 
   return (
     <Container>
@@ -204,6 +213,7 @@ const PollDetails: React.FC = () => {
                 Share
                 <FiShare2 size={20} />
               </Button>
+              <Input name="pollLink" defaultValue={pollLink} />
             </div>
           )}
         </Form>
