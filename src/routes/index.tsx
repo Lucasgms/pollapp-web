@@ -15,7 +15,7 @@ const Routes: React.FC = () => (
     <Route path="/signup" exact component={SignUp} />
     <Route path="/signin" exact component={SignIn} />
     <Route path="/new-poll" exact component={NewPoll} isPrivate />
-    <Route path="/polls/:id" exact component={PollDetails} isPrivate />
+    <Route path="/my-polls/:id" exact component={PollDetails} isPrivate />
   </Switch>
 );
 

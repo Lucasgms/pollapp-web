@@ -39,7 +39,7 @@ const Dashboard: React.FC = () => {
             {userPolls.map(poll => (
               <PollCard
                 key={poll.id}
-                onClick={() => history.push(`/polls/${poll.id}`)}
+                onClick={() => history.push(`/my-polls/${poll.id}`)}
               >
                 <div>
                   <h3>{poll.title}</h3>

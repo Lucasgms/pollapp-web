@@ -35,6 +35,7 @@ export const PollsList = styled.div`
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 24px;
+    grid-row-gap: 12px;
   }
 `;
 
