@@ -50,10 +50,9 @@ export const Content = styled.div`
     justify-content: center;
 
     + div {
-      opacity: 0;
-      visibility: hidden;
       height: 0;
       width: 0;
+      opacity: 0;
     }
 
     svg {
